@@ -3,6 +3,7 @@ plugins {
   id 'org.springframework.boot' version '3.1.1'
   id 'io.spring.dependency-management' version '1.1.0'
   id 'org.graalvm.buildtools.native' version '0.9.23'
+  id 'org.sonarqube' version '4.4.1.3373'
 }
 
 apply plugin: 'java'
@@ -40,7 +41,12 @@ dependencies {
   testImplementation 'org.testcontainers:junit-jupiter'
   testImplementation 'org.testcontainers:mysql'
 }
-
+sonar {
+  properties {
+    property "sonar.projectKey", "pspring"
+    property "sonar.projectName", "pspring"
+  }
+}
 tasks.named('test') {
   useJUnitPlatform()
 }
